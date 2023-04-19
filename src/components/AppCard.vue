@@ -1,5 +1,6 @@
 <script>
 import { store } from '../store';
+import "/node_modules/flag-icons/css/flag-icons.min.css";
     export default{
         name:'AppCard',
         props:{
@@ -22,7 +23,7 @@ import { store } from '../store';
         <div class="ms_text text-center">
             <h5>title: {{ title }}</h5>
             <h5>Original Title:{{ original_title }}</h5>
-            <p>language:{{ language }}</p>
+            <p>language: <span :class="`fi fi-${language} fis`"></span> </p>
             <p>vote</p>
         </div>
     </div>

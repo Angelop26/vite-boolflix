@@ -14,16 +14,19 @@ export default{
     }
   },
   methods:{
-    getCards(){
+    getCards(url,section){
       const params = {
         api_key: '56890690a605d689811fad2a8774a811',
         query: this.store.userInput
       }
       if(this.store.userInput !== ''){
-        axios.get(this.store.apiMoviesURL,{params}
+        axios.get(url,{params}
         ).then((resp) => {
-          console.log(resp);
-          this.store.cards = resp.data.results
+          if(section === 'movies'){
+            this.store.movies = resp.data.results
+          }else{
+            this.store.series = resp.data.results
+          }
         })
         .catch((error)=>{
           console.log(error);
@@ -34,13 +37,17 @@ export default{
       } else{
         console.log('error');
       }
+    },
+    getAxios(){
+      this.getCards(this.store.apiMoviesURL,'movies')
+      this.getCards(this.store.apiSeriesURL,'series')
     }
   }
 }
 </script>
 
 <template>
-<AppHeaderVue @title="getCards"/>
+<AppHeaderVue @title="getAxios"/>
 <AppMain />
 </template>
 
